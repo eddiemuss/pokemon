@@ -25,6 +25,8 @@
         "prefer-const": true,
         "arrow-return-shorthand": true,
         "unnecessary-else": true,
+        "interface-over-type-literal": true,
+        "quotemark": [true, "single", "jsx-double"]
     },
     "jsRules": {
         "max-line-length": {
