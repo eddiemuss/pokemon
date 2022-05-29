@@ -7,7 +7,7 @@ interface Props {
     onChange: (value: string) => void
 }
 
-const SearchField = ({onChange}: Props): FCReturnValue => {
+const SearchField = (props: Props): FCReturnValue => {
     const {names} = useAllPokemonNames()
 
     return (
@@ -15,7 +15,9 @@ const SearchField = ({onChange}: Props): FCReturnValue => {
             id="pokemon-name-search"
             freeSolo
             options={names}
-            renderInput={(params) => <TextField {...params} onChange={onChange} label="Pokemon"/>}
+            renderInput={(params) => <TextField {...params} onChange={props.onChange} label="Pokemon"/>}
+            disabled={!names}
+            onSelect={(event) => props.onChange(event.target.value)}
         />
     )
 }
