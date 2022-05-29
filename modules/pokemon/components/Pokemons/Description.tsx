@@ -1,6 +1,8 @@
 import Typography from "@mui/material/Typography";
+import useFirstVisit from "common/hooks/useFirstVisit";
 
 const Description = () => {
+    const firstVisit = useFirstVisit()
 
     return (
         <div className="h-[40vh] bg-gray-800 flex flex-col justify-evenly items-center py-8">
@@ -14,6 +16,11 @@ const Description = () => {
                 <Typography variant="body1" component="div">
                     Search the list for Pokémons that have always interested you or filter directly by them.
                 </Typography>
+                {!firstVisit && (
+                    <Typography variant="body1" component="div">
+                        Welcome back!
+                    </Typography>
+                )}
             </div>
         </div>
     )
