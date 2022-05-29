@@ -13,6 +13,15 @@ export const usePokemonIndex = () => {
     )
 }
 
+const fetchAllPokemons = () => PokeAPI.Pokemon.listAll()
+
+export const usePokemonAll = () => {
+    return useQuery(
+        QUERY_KEYS.POKEMON_POKEMONS_FULL_LIST,
+        fetchAllPokemons
+    )
+}
+
 const fetchPikachu = (name: string) => PokeAPI.Pokemon.fetch(name)
 
 export const usePokemonGet = (name: string) => {
