@@ -1,7 +1,7 @@
-import {usePikachuGet} from "../queries/pikachu";
-import {IPokemon} from "pokeapi-typescript";
+import {INamedApiResource, IPokemon} from "pokeapi-typescript";
 import pokemonUtil from "../utils/pokemonUtil";
 import {BasePokemon} from '../interfaces/Pokemon'
+import {usePokemonGet, usePokemonIndex} from "../queries/pokemon";
 
 const getBasePokemon = (pokemon: IPokemon): BasePokemon => {
     if (!pokemon) return null
@@ -17,15 +17,16 @@ const getBasePokemon = (pokemon: IPokemon): BasePokemon => {
 }
 
 interface ReturnValue {
-    pokemon: BasePokemon | null
+    pokemons: INamedApiResource<IPokemon>[] | null
 }
 
-export const usePikachu = (): ReturnValue => {
-    const pikachu = usePikachuGet()
+export const usePokemons = (): ReturnValue => {
+    const query = usePokemonIndex()
+    console.log({query})
 
-    console.log({pikachu: pikachu.data})
+    const pokemons = query.data?.results || null
 
     return {
-        pokemon: getBasePokemon(pikachu.data)
+        pokemons,
     }
 }

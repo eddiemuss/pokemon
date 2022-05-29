@@ -1,12 +1,14 @@
-import {usePikachu} from "../../hooks/usePikachu";
 import PokemonCard from "./PokemonCard";
+import {usePokemons} from "../../hooks/usePokemons";
 
 const Pokemons = () => {
-    const pikachu = usePikachu()
+    const {pokemons} = usePokemons()
 
-    return Boolean(pikachu.pokemon) && (
+    return Boolean(pokemons) && (
         <>
-            {[pikachu].map(PokemonCard)}
+            {
+                pokemons.map((pokemon) => <PokemonCard key={pokemon.name} pokemonName={pokemon.name}/>)
+            }
         </>
     )
 }
