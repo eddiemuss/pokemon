@@ -17,7 +17,7 @@ const getBasePokemon = (pokemon: IPokemon): BasePokemon => {
 }
 
 interface ReturnValue {
-    pikachu: BasePokemon | null
+    pokemon: BasePokemon | null
 }
 
 export const usePikachu = (): ReturnValue => {
@@ -26,6 +26,6 @@ export const usePikachu = (): ReturnValue => {
     console.log({pikachu: pikachu.data})
 
     return {
-        pikachu: getBasePokemon(pikachu.data)
+        pokemon: getBasePokemon(pikachu.data)
     }
 }
