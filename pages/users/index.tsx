@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
 import { User } from '../../common/interfaces'
-import { sampleUserData } from '../../common/utils/sample-data'
+import { sampleUserData } from '../../modules/pokemon/utils/sample-data'
 import Layout from '../../common/components/Layout'
 import List from '../../common/components/List'
 
