@@ -17,4 +17,7 @@
   "useTabs": true,
   "vueIndentScriptAndStyle": false,
   "singleAttributePerLine": true,
+  "plugins": [
+    "./node_modules/prettier-plugin-alias-imports"
+  ]
 }

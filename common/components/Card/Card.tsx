@@ -10,7 +10,7 @@ import Content from "./Content";
 
 const MediaCard = ({children}: Children) => {
     return (
-        <Card sx={{maxWidth: 345}}>
+        <Card sx={{maxWidth: 345}} className="m-4">
             {children}
         </Card>
     );
