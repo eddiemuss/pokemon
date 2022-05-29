@@ -9,7 +9,11 @@ interface Props {
 }
 
 const BasicTextField = (props: Props): FCReturnValue => (
-    <TextField {...props} onChange={({target: {value}}) => props.onChange(value)} variant="outlined"/>
+    <TextField
+        {...props}
+        onChange={(event) => props.onChange(event.target.value)}
+        variant="outlined"
+    />
 )
 
 export default BasicTextField
