@@ -1,7 +1,6 @@
 import Card from "common/components/Card/Card"
 import {usePikachu} from "../../hooks/usePikachu";
 
-
 const Pokemon = () => {
     const {pikachu} = usePikachu()
 
@@ -10,10 +9,10 @@ const Pokemon = () => {
     return (
         <Card>
             <>
-                <Card.Image image="https://picsum.photos/200/300" alt="stock image"/>
+                <Card.Image image={pikachu.image} alt=""/>
                 <Card.Content>
                     <>
-                        <Card.Title><>Some title</>
+                        <Card.Title><>{pikachu?.name}</>
                         </Card.Title>
                         <Card.Text><>Some text</>
                         </Card.Text>
@@ -23,8 +22,8 @@ const Pokemon = () => {
                     </>
                 </Card.Content>
                 <Card.Bottom>
-                    <Card.Chips chips={['normal']}/>
-                    <Card.Chips chips={['game1', 'game2']}/>
+                    <Card.Chips chips={[pikachu.type]}/>
+                    <Card.Chips chips={pikachu.moves}/>
                 </Card.Bottom>
             </>
         </Card>
