@@ -1,47 +1,23 @@
 import {usePikachuGet} from "../queries/pikachu";
 import {IPokemon} from "pokeapi-typescript";
+import pokemonUtil from "../utils/pokemonUtil";
+import {BasePokemon} from '../interfaces/Pokemon'
 
-interface HP {
-    value: number
-    name: string
-}
-
-const getHpFromPokemon = (pokemon: IPokemon): HP => {
-    const hpStatus = pokemon.stats.find(({stat}) => stat.name === 'hp')
-
-    return {value: hpStatus.base_stat, name: hpStatus.stat.name}
-}
-
-const getTypeFromPokemon = (pokemon: IPokemon): string => pokemon.types[0].type.name
-
-const getFirstMovesFromPokemon = (pokemon: IPokemon): string[] =>
-    pokemon.moves.slice(0, 3).map(({move}) => move.name)
-
-const getImageFromPokemon = (pokemon: IPokemon): string => pokemon.sprites.front_default
-
-
-interface Pokemon {
-    name: string
-    hp: HP
-    type: string
-    moves: string[]
-    image: string
-}
-
-interface ReturnValue {
-    pikachu: Pokemon | null
-}
-
-const mapPokemon = (pokemon: IPokemon): Pokemon => {
+const getBasePokemon = (pokemon: IPokemon): BasePokemon => {
     if (!pokemon) return null
+    const PokemonUtil = pokemonUtil(pokemon)
 
     return {
         name: pokemon.name,
-        hp: getHpFromPokemon(pokemon),
-        type: getTypeFromPokemon(pokemon),
-        moves: getFirstMovesFromPokemon(pokemon),
-        image: getImageFromPokemon(pokemon)
+        hp: PokemonUtil.getHp(),
+        type: PokemonUtil.getType(),
+        moves: PokemonUtil.getFirstMoves(),
+        image: PokemonUtil.getImage(),
     }
+}
+
+interface ReturnValue {
+    pikachu: BasePokemon | null
 }
 
 export const usePikachu = (): ReturnValue => {
@@ -50,6 +26,6 @@ export const usePikachu = (): ReturnValue => {
     console.log({pikachu: pikachu.data})
 
     return {
-        pikachu: mapPokemon(pikachu.data)
+        pikachu: getBasePokemon(pikachu.data)
     }
 }
