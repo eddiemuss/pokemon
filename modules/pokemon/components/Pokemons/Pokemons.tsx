@@ -8,7 +8,7 @@ const Pokemons = () => {
     return Boolean(pokemons) && (
         <>
             <Description/>
-            <div className="flex flex-row flex-wrap">
+            <div className="flex flex-row flex-wrap justify-evenly items-start">
                 {
                     pokemons.map((pokemon) => <PokemonCard key={pokemon.name} pokemonName={pokemon.name}/>)
                 }
