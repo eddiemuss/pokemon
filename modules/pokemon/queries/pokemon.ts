@@ -1,15 +1,24 @@
-import PokeAPI from "pokeapi-typescript";
-import {useQuery} from "react-query";
+import PokeAPI, {INamedApiResourceList, IPokemon} from "pokeapi-typescript";
+import {useInfiniteQuery, useQuery} from "react-query";
 import {buildQueryKeyForPokemon, QUERY_KEYS} from "../utils/queryKeys";
+import {http} from "common/utils/http";
 
 const POKEMON_LIMIT = 20
+const INITIAL_URL = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${POKEMON_LIMIT}`
 
-const fetchPokemons = () => PokeAPI.Pokemon.list(POKEMON_LIMIT)
+const fetchPokemons = async ({pageParam = INITIAL_URL}) => {
+    const res = await http<INamedApiResourceList<IPokemon>>(pageParam)
+    return {results: res.results, nextPage: res.next, previousPage: res.previous}
+}
 
 export const usePokemonIndex = () => {
-    return useQuery(
+    return useInfiniteQuery(
         QUERY_KEYS.POKEMON_POKEMONS,
-        fetchPokemons
+        fetchPokemons,
+        {
+            getNextPageParam: (lastPage) => lastPage.nextPage,
+            getPreviousPageParam: (lastPage) => lastPage.previousPage
+        }
     )
 }
 
