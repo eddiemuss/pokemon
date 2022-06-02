@@ -6,15 +6,16 @@ interface Props {
 }
 
 const PokemonCard = ({pokemonName}: Props) => {
-    const {pokemon} = usePokemon(pokemonName)
+    const {pokemon, isLoading} = usePokemon(pokemonName)
 
-    return Boolean(pokemon) && (
+    return (
         <Card>
             <>
-                <Card.Image image={pokemon.image} alt=""/>
+                <Card.Image loading={isLoading} image={pokemon?.image} alt=""/>
                 <Card.Content>
                     <>
-                        <Card.Title><>{pokemon.name}</>
+                        <Card.Title>
+                            <>{pokemon?.name || pokemonName}</>
                         </Card.Title>
                         <Card.Text><>Some text</>
                         </Card.Text>
@@ -23,9 +24,11 @@ const PokemonCard = ({pokemonName}: Props) => {
                         </Card.Content.onExpanded>
                     </>
                 </Card.Content>
-                <Card.Bottom>
-                    <Card.Chips chips={[pokemon.type]}/>
-                    <Card.Chips chips={pokemon.moves}/>
+                <Card.Bottom loading={isLoading}>
+                    <>
+                        <Card.Chips chips={[pokemon?.type]}/>
+                        <Card.Chips chips={pokemon?.moves}/>
+                    </>
                 </Card.Bottom>
             </>
         </Card>

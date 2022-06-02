@@ -18,12 +18,14 @@ const getBasePokemon = (pokemon: IPokemon): BasePokemon => {
 
 interface ReturnValue {
     pokemon: BasePokemon | null
+    isLoading: boolean
 }
 
 export const usePokemon = (name: string): ReturnValue => {
-    const pikachu = usePokemonGet(name)
+    const pokemon = usePokemonGet(name)
 
     return {
-        pokemon: getBasePokemon(pikachu.data)
+        pokemon: getBasePokemon(pokemon.data),
+        isLoading: pokemon.isLoading,
     }
 }
