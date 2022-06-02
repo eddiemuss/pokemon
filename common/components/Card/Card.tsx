@@ -7,20 +7,31 @@ import Text from './Text'
 import {Children} from "common/interfaces/props"
 import Chips from "./Chips";
 import Content from "./Content";
+import {Skeleton} from "@mui/material";
 
 const MediaCard = ({children}: Children) => {
     return (
-        <Card sx={{maxWidth: 345}} className="m-4">
+        <Card sx={{width: 345}} className="m-4">
             {children}
         </Card>
     );
 }
 
+interface Props extends Children {
+    loading: boolean
+}
+
+const CustomCardActions = ({loading = false, children}: Props) => {
+    if (loading) return <Skeleton variant="rectangular" height="48"/>
+    return <CardActions>{children}</CardActions>
+}
+
+
 MediaCard.Image = Image
 MediaCard.Content = Content
 MediaCard.Title = Title
 MediaCard.Text = Text
-MediaCard.Bottom = CardActions
+MediaCard.Bottom = CustomCardActions
 MediaCard.Chips = Chips
 
 export default MediaCard
