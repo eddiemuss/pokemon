@@ -1,14 +1,18 @@
 import * as LocalStorageUtil from "../utils/localStorageUtil";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const useFirstVisit = () => {
-   const firstVisit = !LocalStorageUtil.getItem(LocalStorageUtil.KEYS.hasVisitBefore)
+    const [firstVisit, setFirstVisit] = useState(false)
 
-   useEffect(() => {
-      LocalStorageUtil.setItem(LocalStorageUtil.KEYS.hasVisitBefore, 'true')
-   }, [])
+    useEffect(() => {
+        // I need to put it within the useEffect because the window object is only available on the client side.
+        const storedValue = !LocalStorageUtil.getItem(LocalStorageUtil.KEYS.hasVisitBefore)
 
-   return firstVisit
+        setFirstVisit(storedValue)
+        if (!storedValue) LocalStorageUtil.setItem(LocalStorageUtil.KEYS.hasVisitBefore, 'true')
+    }, [])
+
+    return Boolean(firstVisit)
 }
 
 export default useFirstVisit

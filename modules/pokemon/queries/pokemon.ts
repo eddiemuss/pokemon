@@ -9,7 +9,7 @@ const INITIAL_URL = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${POKEMON_
 // I don't think that the pokemon api gets updated quite frequently.
 const DEFAULT_STEAL_TIME = 10 * 60 * 1000
 
-const fetchPokemons = async ({pageParam = INITIAL_URL}) => {
+export const fetchPokemons = async ({pageParam = INITIAL_URL}) => {
     const res = await http<INamedApiResourceList<IPokemon>>(pageParam)
     return {results: res.results, nextPage: res.next, previousPage: res.previous}
 }
@@ -26,7 +26,7 @@ export const usePokemonIndex = () => {
     )
 }
 
-const fetchAllPokemons = () => PokeAPI.Pokemon.listAll()
+export const fetchAllPokemons = () => PokeAPI.Pokemon.listAll()
 
 export const usePokemonAll = () => {
     return useQuery(
