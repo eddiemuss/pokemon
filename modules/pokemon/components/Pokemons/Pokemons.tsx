@@ -8,9 +8,11 @@ import {usePokemonNames} from "../../hooks/usePokemonNames";
 import useLoadMorePokemons from "../../hooks/useLoadMorePokemons";
 
 const Pokemons = () => {
-    const {pokemonNames, setPokemonName} = useFilterPokemonNames()
+    const {pokemonNames, setPokemonName, isSearching} = useFilterPokemonNames()
     const {fetchNextPokemons, hasMorePokemons, isFetchingNextPokemons} = usePokemonNames()
     const loadMoreRef = useLoadMorePokemons(fetchNextPokemons)
+
+    const canLoadMore = hasMorePokemons && !isSearching
 
     return Boolean(pokemonNames) && (
         <>
@@ -19,7 +21,7 @@ const Pokemons = () => {
                 <SearchField onChange={setPokemonName}/>
             </Section>
             <PokemonList names={pokemonNames}/>
-            {hasMorePokemons && (
+            {canLoadMore && (
                 <LoadingButton
                     ref={loadMoreRef}
                     size="small"
