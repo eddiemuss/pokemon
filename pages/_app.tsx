@@ -3,7 +3,7 @@ import ReactQueryClientProvider from "common/contexts/ReactQueryClient";
 import 'common/styles/globals.css'
 
 export const App = ({Component, pageProps}: AppProps) => (
-    <ReactQueryClientProvider>
+    <ReactQueryClientProvider dehydratedState={pageProps.dehydratedState}>
         <Component {...pageProps} />
     </ReactQueryClientProvider>
 )

@@ -1,30 +1,37 @@
-import {useState} from "react";
-import useDebounce from "common/hooks/useDebounce";
+import LoadingButton from '@mui/lab/LoadingButton'
 import Section from "common/components/TextField/Section";
-import {usePokemonNames} from "../../hooks/usePokemonNames";
-import useAllPokemonNames from "../../hooks/useAllPokemonNames";
 import Description from './Description'
 import SearchField from "./SearchField";
 import PokemonList from "./PokemonList";
-
-const INITIAL_SEARCH_STRING = ''
+import useFilterPokemonNames from "../../hooks/useFilterPokemonNames";
+import {usePokemonNames} from "../../hooks/usePokemonNames";
+import useLoadMorePokemons from "../../hooks/useLoadMorePokemons";
 
 const Pokemons = () => {
-    const {names: defaultNames} = usePokemonNames()
-    const {names} = useAllPokemonNames()
+    const {pokemonNames, setPokemonName, isSearching} = useFilterPokemonNames()
+    const {fetchNextPokemons, hasMorePokemons, isFetchingNextPokemons} = usePokemonNames()
+    const loadMoreRef = useLoadMorePokemons(fetchNextPokemons)
 
-    const [searchString, setSearchString] = useState(INITIAL_SEARCH_STRING)
-    const debouncedSetSearchString = useDebounce(setSearchString)
-
-    const pokemonNames = Boolean(searchString) ? names.filter((name) => name.toLowerCase().includes(searchString)) : defaultNames
+    const canLoadMore = hasMorePokemons && !isSearching
 
     return Boolean(pokemonNames) && (
         <>
             <Description/>
             <Section>
-                <SearchField onChange={debouncedSetSearchString}/>
+                <SearchField onChange={setPokemonName}/>
             </Section>
             <PokemonList names={pokemonNames}/>
+            {canLoadMore && (
+                <LoadingButton
+                    ref={loadMoreRef}
+                    size="small"
+                    onClick={fetchNextPokemons}
+                    loading={isFetchingNextPokemons}
+                    variant="outlined"
+                    disabled={!isFetchingNextPokemons}
+                >
+                    Load more pokemons
+                </LoadingButton>)}
         </>
     )
 }
