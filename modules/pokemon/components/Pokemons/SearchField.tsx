@@ -17,6 +17,7 @@ const SearchField = (props: Props): FCReturnValue => {
             options={names}
             renderInput={(params) => <TextField {...params} onChange={props.onChange} label="Pokemon"/>}
             disabled={!names}
+            // @ts-ignore
             onSelect={(event) => props.onChange(event.target.value)}
         />
     )
