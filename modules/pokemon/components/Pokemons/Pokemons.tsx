@@ -3,6 +3,7 @@ import Section from "common/components/TextField/Section";
 import Description from './Description'
 import SearchField from "./SearchField";
 import PokemonList from "./PokemonList";
+import Head from './Head'
 import useFilterPokemonNames from "../../hooks/useFilterPokemonNames";
 import {usePokemonNames} from "../../hooks/usePokemonNames";
 import useLoadMorePokemons from "../../hooks/useLoadMorePokemons";
@@ -16,6 +17,7 @@ const Pokemons = () => {
 
     return Boolean(pokemonNames) && (
         <>
+            <Head/>
             <Description/>
             <Section>
                 <SearchField onChange={setPokemonName}/>
