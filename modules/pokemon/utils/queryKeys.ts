@@ -4,3 +4,4 @@ export const QUERY_KEYS = {
 } as const
 
 export const buildQueryKeyForPokemon = (name: string) => ['pokemon', name]
+export const buildQueryKeyForEvolutionChain = (name: string) => ['pokemon', 'evolution-chain', name]
