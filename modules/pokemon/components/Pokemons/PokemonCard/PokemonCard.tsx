@@ -20,11 +20,13 @@ const PokemonCard = ({pokemonName}: Props) => {
                 <Front name={pokemon?.name || pokemonName} image={pokemon?.image} isLoading={isLoading}/>
             </Card>
             <Card onClick={toggleFlipped}>
-                <Back
-                    name={pokemon?.name || pokemonName}
-                    type={pokemon?.type}
-                    moves={pokemon?.moves}
-                    isLoading={isLoading}/>
+                {isFlipped ? (
+                    <Back
+                        name={pokemon?.name || pokemonName}
+                        type={pokemon?.type}
+                        moves={pokemon?.moves}
+                        isLoading={isLoading}/>
+                ) : null}
             </Card>
         </ReactCardFlip>
     )

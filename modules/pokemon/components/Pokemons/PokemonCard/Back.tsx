@@ -1,34 +1,11 @@
 import Card from "../../../../../common/components/Card/Card";
-import useEvolutionChain from "../../../hooks/useEvolutionChain";
+import EvolutionChain from "./EvolutionChain";
 
 interface PokemonCardBackProps {
     name: string
     isLoading: boolean
     type: string
     moves: string[]
-}
-
-interface EvolutionItemProps {
-    name: string
-    isCurrentPokemon: boolean
-}
-
-const EvolutionItem = ({name, isCurrentPokemon}: EvolutionItemProps) => Boolean(name) && (
-    <Card.Text className={isCurrentPokemon ? 'underline' : null}>
-        <>{name}</>
-    </Card.Text>
-)
-
-const EvolutionChain = ({name}: { name: string }) => {
-    const {baseForm, midForm, advanceForm} = useEvolutionChain(name)
-
-    return (
-        <>
-            <EvolutionItem name={baseForm} isCurrentPokemon={name === baseForm}/>
-            <EvolutionItem name={midForm} isCurrentPokemon={name === midForm}/>
-            <EvolutionItem name={advanceForm} isCurrentPokemon={name === advanceForm}/>
-        </>
-    )
 }
 
 const Back = ({name, isLoading, type, moves}: PokemonCardBackProps) => {

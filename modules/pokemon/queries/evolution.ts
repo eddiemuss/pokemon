@@ -3,17 +3,19 @@ import {useQuery} from "react-query";
 import {buildQueryKeyForEvolutionChain} from "../utils/queryKeys";
 import {http} from "common/utils/http";
 
-export const fetchEvolutionChain = async (name: string) => {
-    const {evolution_chain: {url}} = await PokeAPI.PokemonSpecies.fetch(name)
-    return http<Promise<IEvolutionChain>>(url)
+export const fetchEvolutionChain = async (url: string) => http<Promise<IEvolutionChain>>(url)
+
+interface Options {
+    enabled?: boolean
 }
 
-export const useEvolutionChainGet = (name: string) => {
+export const useEvolutionChainGet = (url: string, options: Options = {}) => {
     return useQuery(
-        buildQueryKeyForEvolutionChain(name),
-        () => fetchEvolutionChain(name),
+        buildQueryKeyForEvolutionChain(url),
+        () => fetchEvolutionChain(url),
         {
             staleTime: Infinity,
+            ...options
         }
     )
 }
