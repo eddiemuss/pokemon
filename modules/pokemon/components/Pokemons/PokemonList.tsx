@@ -1,4 +1,4 @@
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "./PokemonCard/PokemonCard";
 
 interface Props {
     names: string[]

@@ -9,9 +9,13 @@ import Chips from "./Chips";
 import Content from "./Content";
 import {Skeleton} from "@mui/material";
 
-const MediaCard = ({children}: Children) => {
+interface MediaCardProps extends Children {
+    onClick: () => void
+}
+
+const MediaCard = ({children, onClick}: MediaCardProps) => {
     return (
-        <Card sx={{width: 345}} className="m-4">
+        <Card sx={{width: 345}} className="m-4" onClick={onClick}>
             {children}
         </Card>
     );
