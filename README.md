@@ -1,43 +1,44 @@
-# TypeScript Next.js example
+# World of Pokemons
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+This is an little web application to explore the features of react-query, next.js and many more.
+It uses the PokeApi to fetch information about hundreds of wild creatures and give you the opportunity to explore them.
 
-## Deploy your own
+## What you can do?
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
+You are free to explore the different Pokemons by simply scrolling down until you are bord or find something of interest
+for you.
+When you find a Pokemon that you like you can click on it to get more information about the evolution and more details
+about its natural habitat as well as moves and abilities (still in progress).
+Of course you can use the infinite scrolling to search as long as you want without fetching all information from the
+beginning. We wanted to make sure that a good Performance if provided.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+Besides the simple scrolling you are also free to search for a Pokemon by simply typing the name. The search field will
+of course provide you with autocompletion if you are not entirely sure how a Pokemon is spelt.
 
-## How to use it?
+Ah yeah, the last feature is that you are able to see the evolution chain of a pokemon and you can simply level up or
+down to a particular pokemon from the chain if you want. Click for that just on the button at the back of you Pokemon
+card.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Have fun exploring the world of Pokemons.
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
-# or
-pnpm create next-app --example with-typescript with-typescript-app
-```
+Cheers
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## How to get it running?
 
-## Notes
+1. First clone the repo
+2. Install the dependencies `npm install`
+3. Launch the app locally `npm run dev` **or** build the production code and run the code in your
+   browser `npm run build`
+   and `npm run start`
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
+## Feedback
 
-```
-npm install --save-dev typescript
-```
+I use this app for little demo purposes and you play around with different features. The app is by any means for away
+from finished so in case you want to contribute on it or you have nice feedback on features you would like to see or
+improvements that would help the usage, feel free to write me a message.
+Any kind of feedback is always welcomed.
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+Make the project your own!
 
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+Best wished
+Eddie
