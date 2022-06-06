@@ -14,7 +14,7 @@ const useEvolutionChain = (name: string): EvolutionChainReturnType => {
 
     return {
         baseForm: data?.chain.species.name || '',
-        midForm: data?.chain.evolves_to[0].species.name || '',
+        midForm: data?.chain.evolves_to[0]?.species.name || '',
         advanceForm: data?.chain.evolves_to[0].evolves_to[0]?.species.name || ''
     }
 }

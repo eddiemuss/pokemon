@@ -6,14 +6,15 @@ interface PokemonCardBackProps {
     isLoading: boolean
     type: string
     moves: string[]
+    setNewPokemon: (name: string) => void
 }
 
-const Back = ({name, isLoading, type, moves}: PokemonCardBackProps) => {
+const Back = ({name, isLoading, type, moves, setNewPokemon}: PokemonCardBackProps) => {
 
     return (
         <>
             <Card.Content>
-                <EvolutionChain name={name}/>
+                <EvolutionChain name={name} onSelect={setNewPokemon}/>
             </Card.Content>
             <Card.Bottom loading={isLoading}>
                 <>

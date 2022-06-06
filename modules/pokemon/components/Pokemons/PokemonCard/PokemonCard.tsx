@@ -10,7 +10,7 @@ interface Props {
 }
 
 const PokemonCard = ({pokemonName}: Props) => {
-    const {pokemon, isLoading} = usePokemon(pokemonName)
+    const {pokemon, isLoading, setNewPokemon} = usePokemon(pokemonName)
     const [isFlipped, setIsFlipped] = useState(false)
     const toggleFlipped = () => setIsFlipped((flipped) => !flipped)
 
@@ -25,7 +25,9 @@ const PokemonCard = ({pokemonName}: Props) => {
                         name={pokemon?.name || pokemonName}
                         type={pokemon?.type}
                         moves={pokemon?.moves}
-                        isLoading={isLoading}/>
+                        isLoading={isLoading}
+                        setNewPokemon={setNewPokemon}
+                    />
                 ) : null}
             </Card>
         </ReactCardFlip>

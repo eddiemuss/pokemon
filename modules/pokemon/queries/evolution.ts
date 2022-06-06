@@ -1,4 +1,4 @@
-import PokeAPI, {IEvolutionChain} from "pokeapi-typescript";
+import {IEvolutionChain} from "pokeapi-typescript";
 import {useQuery} from "react-query";
 import {buildQueryKeyForEvolutionChain} from "../utils/queryKeys";
 import {http} from "common/utils/http";
