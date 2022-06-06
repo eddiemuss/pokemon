@@ -1,6 +1,6 @@
 import PokeAPI, {INamedApiResourceList, IPokemon} from "pokeapi-typescript";
 import {useInfiniteQuery, useQuery} from "react-query";
-import {buildQueryKeyForPokemon, QUERY_KEYS} from "../utils/queryKeys";
+import {buildQueryKeyForPokemon, buildQueryKeyForSpecies, QUERY_KEYS} from "../utils/queryKeys";
 import {http} from "common/utils/http";
 
 const POKEMON_LIMIT = 20
@@ -44,6 +44,18 @@ export const usePokemonGet = (name: string) => {
     return useQuery(
         buildQueryKeyForPokemon(name),
         () => fetchPokemon(name),
+        {
+            staleTime: DEFAULT_STEAL_TIME,
+        }
+    )
+}
+
+const fetchSpecies = (name: string) => PokeAPI.PokemonSpecies.fetch(name)
+
+export const usePokeSpeciesGet = (name: string) => {
+    return useQuery(
+        buildQueryKeyForSpecies(name),
+        () => fetchSpecies(name),
         {
             staleTime: DEFAULT_STEAL_TIME,
         }
